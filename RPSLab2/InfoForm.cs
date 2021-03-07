@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace RPSLab2
 {
-    public partial class Form1 : Form
+    public partial class InfoForm : Form
     {
-        public Form1()
+        public InfoForm()
         {
             InitializeComponent();
+            MaximizeBox = false; //Отключение возможности растягивания окна
+        }
+
+        private void CloseInfoFormButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
