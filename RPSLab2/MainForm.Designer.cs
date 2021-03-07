@@ -37,7 +37,7 @@ namespace RPSLab2
             this.InfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ResultTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.BoforRadioButton = new System.Windows.Forms.RadioButton();
+            this.BeaufortRadioButton = new System.Windows.Forms.RadioButton();
             this.ROT13RadioButton = new System.Windows.Forms.RadioButton();
             this.EncodeButton = new System.Windows.Forms.Button();
             this.DecodeButton = new System.Windows.Forms.Button();
@@ -98,6 +98,7 @@ namespace RPSLab2
             // 
             this.ResultTextBox.Location = new System.Drawing.Point(56, 297);
             this.ResultTextBox.Name = "ResultTextBox";
+            this.ResultTextBox.ReadOnly = true;
             this.ResultTextBox.Size = new System.Drawing.Size(676, 22);
             this.ResultTextBox.TabIndex = 2;
             // 
@@ -110,16 +111,17 @@ namespace RPSLab2
             this.label1.TabIndex = 3;
             this.label1.Text = "Введите исходный текст";
             // 
-            // BoforRadioButton
+            // BeaufortRadioButton
             // 
-            this.BoforRadioButton.AutoSize = true;
-            this.BoforRadioButton.Location = new System.Drawing.Point(223, 114);
-            this.BoforRadioButton.Name = "BoforRadioButton";
-            this.BoforRadioButton.Size = new System.Drawing.Size(123, 21);
-            this.BoforRadioButton.TabIndex = 4;
-            this.BoforRadioButton.TabStop = true;
-            this.BoforRadioButton.Text = "Шифр Бофора";
-            this.BoforRadioButton.UseVisualStyleBackColor = true;
+            this.BeaufortRadioButton.AutoSize = true;
+            this.BeaufortRadioButton.Location = new System.Drawing.Point(248, 114);
+            this.BeaufortRadioButton.Name = "BeaufortRadioButton";
+            this.BeaufortRadioButton.Size = new System.Drawing.Size(123, 21);
+            this.BeaufortRadioButton.TabIndex = 4;
+            this.BeaufortRadioButton.TabStop = true;
+            this.BeaufortRadioButton.Text = "Шифр Бофора";
+            this.BeaufortRadioButton.UseVisualStyleBackColor = true;
+            this.BeaufortRadioButton.CheckedChanged += new System.EventHandler(this.BeaufortRadioButton_CheckedChanged);
             // 
             // ROT13RadioButton
             // 
@@ -131,6 +133,7 @@ namespace RPSLab2
             this.ROT13RadioButton.TabStop = true;
             this.ROT13RadioButton.Text = "ROT13";
             this.ROT13RadioButton.UseVisualStyleBackColor = true;
+            this.ROT13RadioButton.CheckedChanged += new System.EventHandler(this.ROT13RadioButton_CheckedChanged);
             // 
             // EncodeButton
             // 
@@ -143,7 +146,7 @@ namespace RPSLab2
             // 
             // DecodeButton
             // 
-            this.DecodeButton.Location = new System.Drawing.Point(407, 186);
+            this.DecodeButton.Location = new System.Drawing.Point(434, 186);
             this.DecodeButton.Name = "DecodeButton";
             this.DecodeButton.Size = new System.Drawing.Size(161, 44);
             this.DecodeButton.TabIndex = 7;
@@ -166,7 +169,7 @@ namespace RPSLab2
             this.groupBox1.Controls.Add(this.ResultTextBox);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.DecodeButton);
-            this.groupBox1.Controls.Add(this.BoforRadioButton);
+            this.groupBox1.Controls.Add(this.BeaufortRadioButton);
             this.groupBox1.Controls.Add(this.EncodeButton);
             this.groupBox1.Controls.Add(this.ROT13RadioButton);
             this.groupBox1.Location = new System.Drawing.Point(0, 31);
@@ -205,7 +208,7 @@ namespace RPSLab2
         private System.Windows.Forms.ToolStripMenuItem InfoToolStripMenuItem;
         private System.Windows.Forms.TextBox ResultTextBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton BoforRadioButton;
+        private System.Windows.Forms.RadioButton BeaufortRadioButton;
         private System.Windows.Forms.RadioButton ROT13RadioButton;
         private System.Windows.Forms.Button EncodeButton;
         private System.Windows.Forms.Button DecodeButton;

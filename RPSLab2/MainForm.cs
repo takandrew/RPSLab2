@@ -17,6 +17,11 @@ namespace RPSLab2
         {
             InitializeComponent();
             MaximizeBox = false; //Отключение возможности растягивания окна
+            if (!BeaufortRadioButton.Checked && !ROT13RadioButton.Checked)
+            {
+                EncodeButton.Enabled = false;
+                DecodeButton.Enabled = false;
+            }
         }
 
         private void InfoToolStripMenuItem_Click(object sender, EventArgs e) //Вывод справочного окна
@@ -32,6 +37,18 @@ namespace RPSLab2
                 showInfoForm.Show();
                 showInfoForm.Focus();
             }
+        }
+
+        private void BeaufortRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            EncodeButton.Enabled = true;
+            DecodeButton.Enabled = true;
+        }
+
+        private void ROT13RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            EncodeButton.Enabled = true;
+            DecodeButton.Enabled = true;
         }
     }
 }

@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Beaufort.cs" />
+    <Compile Include="ICipher.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +62,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ROT13.cs" />
     <EmbeddedResource Include="InfoForm.resx">
       <DependentUpon>InfoForm.cs</DependentUpon>
     </EmbeddedResource>
