@@ -19,10 +19,8 @@ namespace RPSLab2
         }
         public string Encode(string text, string key)
         {
-            for (int i = key.Length, j = 0; i < text.Length; i++, j++) 
-            {
-                key += key[((i + j) % key.Length)]; 
-            }
+            for (int i = key.Length, j = 0; i < text.Length; i++, j++)
+                key += key[((i + j) % key.Length)];
             var keyUP = key.ToCharArray();
             for (int i = 0; i < keyUP.Length; i++)
                 keyUP[i] = char.ToUpper(keyUP[i]);

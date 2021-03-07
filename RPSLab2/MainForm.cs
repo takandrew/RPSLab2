@@ -150,13 +150,26 @@ namespace RPSLab2
         {
             if (DataTextBox.Text != "" && ResultTextBox.Text != "") //Проверка наличия результата 
             {
-                if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
-                    return; //Случай с отменой выбора файла
-                string saveFilename = saveFileDialog1.FileName;
-                //Сохранение в файл
-                System.IO.File.WriteAllText(saveFilename, " Исходный текст: \n" +
-                    DataTextBox.Text + "\n Измененный текст: \n" + ResultTextBox.Text);
-                MessageBox.Show("Файл сохранен", "Файл");
+                if (BeaufortRadioButton.Checked)
+                {
+                    if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
+                        return; //Случай с отменой выбора файла
+                    string saveFilename = saveFileDialog1.FileName;
+                    //Сохранение в файл
+                    System.IO.File.WriteAllText(saveFilename, " Исходный текст: \n" +
+                        DataTextBox.Text + "\n Ключ: \n" + KeyTextBox.Text + "\n Измененный текст: \n" + ResultTextBox.Text);
+                    MessageBox.Show("Файл сохранен", "Файл");
+                }
+                else if (ROT13RadioButton.Checked)
+                {
+                    if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
+                        return; //Случай с отменой выбора файла
+                    string saveFilename = saveFileDialog1.FileName;
+                    //Сохранение в файл
+                    System.IO.File.WriteAllText(saveFilename, " Исходный текст: \n" +
+                        DataTextBox.Text + "\n Измененный текст: \n" + ResultTextBox.Text);
+                    MessageBox.Show("Файл сохранен", "Файл");
+                }
             }
             else
                 MessageBox.Show("Результат программы отсутствует", "Файл");
