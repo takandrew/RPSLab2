@@ -21,6 +21,10 @@ namespace RPSLab2
             {
                 EncodeButton.Enabled = false;
                 DecodeButton.Enabled = false;
+                KeyLabel.Visible = false;
+                KeyTextBox.Visible = false;
+                FileInputButton.Visible = false;
+                DataTextBox.Enabled = false;
             }
         }
 
@@ -43,12 +47,64 @@ namespace RPSLab2
         {
             EncodeButton.Enabled = true;
             DecodeButton.Enabled = true;
+            KeyLabel.Visible = true;
+            KeyTextBox.Visible = true;
+            if (FileInputRadioButton.Checked)
+                FileInputButton.Enabled = true;
         }
 
         private void ROT13RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             EncodeButton.Enabled = true;
             DecodeButton.Enabled = true;
+            KeyLabel.Visible = false;
+            KeyTextBox.Visible = false;
+            if (FileInputRadioButton.Checked)
+                FileInputButton.Enabled = true;
+        }
+
+        private void EncodeButton_Click(object sender, EventArgs e)
+        {
+            if (BeaufortRadioButton.Checked)
+            {
+                
+            }
+            else if (ROT13RadioButton.Checked)
+            {
+
+            }
+        }
+
+        private void DecodeButton_Click(object sender, EventArgs e)
+        {
+            if (BeaufortRadioButton.Checked)
+            {
+
+            }
+            else if (ROT13RadioButton.Checked)
+            {
+
+            }
+        }
+
+        private void ManualInputRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            FileInputButton.Visible = false;
+            DataTextBox.Enabled = true;
+            BeaufortRadioButton.Enabled = true;
+            ROT13RadioButton.Enabled = true;
+        }
+
+        private void FileInputRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            FileInputButton.Visible = true;
+            if (BeaufortRadioButton.Checked || ROT13RadioButton.Checked)
+                FileInputButton.Enabled = true;
+            else
+                FileInputButton.Enabled = false;
+            DataTextBox.Enabled = true;
+            BeaufortRadioButton.Enabled = true;
+            ROT13RadioButton.Enabled = true;
         }
     }
 }

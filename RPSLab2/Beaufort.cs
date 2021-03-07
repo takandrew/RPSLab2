@@ -13,10 +13,12 @@ namespace RPSLab2
 
         public string Encode(string text)
         {
+            
             return text;
         }
         public string Decode(string text)
         {
+            
             return text;
         }
     }
