@@ -10,13 +10,37 @@ namespace RPSLab2
     {
         const string engAlphabet = @"abcdefghijklmnopqrstuvwxyz";
         const string rusAlphabet = @"абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
-
-        public string Encode(string text)
+        private bool IsLatin(char letter)
         {
-            
-            return text;
+            short minusOne = -1;
+            if (engAlphabet.IndexOf(char.ToLower(letter)) == minusOne)
+                return false;
+            return true;
         }
-        public string Decode(string text)
+        public string Encode(string text, string key)
+        {
+            for (int i = key.Length, j = 0; i < text.Length; i++, j++) 
+            {
+                key += key[((i + j) % key.Length)]; 
+            }
+            var letters = text.ToCharArray();
+            for (var i = 0; i < letters.Length; i++)
+                if (char.IsLetter(letters[i]))
+                {
+                    var isLowerCase = char.IsLower(letters[i]);
+                    if (IsLatin(letters[i]))
+                        letters[i] = engAlphabet[(((engAlphabet.Length + engAlphabet.IndexOf(key[i]) -
+                    engAlphabet.IndexOf(text[i])) % engAlphabet.Length))];
+                    else
+                        letters[i] = rusAlphabet[(((rusAlphabet.Length + rusAlphabet.IndexOf(key[i]) -
+                    rusAlphabet.IndexOf(text[i])) % rusAlphabet.Length))];
+                    if (!isLowerCase)
+                        letters[i] = char.ToUpper(letters[i]);
+                }
+
+            return string.Join("", letters);
+        }
+        public string Decode(string text, string key)
         {
             
             return text;

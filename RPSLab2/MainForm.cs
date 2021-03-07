@@ -17,15 +17,14 @@ namespace RPSLab2
         {
             InitializeComponent();
             MaximizeBox = false; //Отключение возможности растягивания окна
-            if (!BeaufortRadioButton.Checked && !ROT13RadioButton.Checked)
-            {
-                EncodeButton.Enabled = false;
-                DecodeButton.Enabled = false;
-                KeyLabel.Visible = false;
-                KeyTextBox.Visible = false;
-                FileInputButton.Visible = false;
-                DataTextBox.Enabled = false;
-            }
+            EncodeButton.Enabled = false;
+            DecodeButton.Enabled = false;
+            KeyLabel.Visible = false;
+            KeyTextBox.Visible = false;
+            FileInputButton.Visible = false;
+            DataTextBox.Enabled = false;
+            BeaufortRadioButton.Enabled = false;
+            ROT13RadioButton.Enabled = false;
         }
 
         private void InfoToolStripMenuItem_Click(object sender, EventArgs e) //Вывод справочного окна
@@ -63,27 +62,40 @@ namespace RPSLab2
                 FileInputButton.Enabled = true;
         }
 
+        string text = null;
+        string key = null;
         private void EncodeButton_Click(object sender, EventArgs e)
         {
+            text = DataTextBox.Text;
             if (BeaufortRadioButton.Checked)
             {
-                
+                Beaufort beaufort = new Beaufort();
+                key = KeyTextBox.Text;
+                text = beaufort.Encode(text, key);
+                ResultTextBox.Text = text;
             }
             else if (ROT13RadioButton.Checked)
             {
-
+                ROT13 rot13 = new ROT13();
+                key = null;
+                text = rot13.Encode(text, key);
+                ResultTextBox.Text = text;
             }
         }
 
         private void DecodeButton_Click(object sender, EventArgs e)
         {
+            text = DataTextBox.Text;
             if (BeaufortRadioButton.Checked)
             {
 
             }
             else if (ROT13RadioButton.Checked)
             {
-
+                ROT13 rot13 = new ROT13();
+                key = null;
+                text = rot13.Decode(text, key);
+                ResultTextBox.Text = text;
             }
         }
 
@@ -102,9 +114,51 @@ namespace RPSLab2
                 FileInputButton.Enabled = true;
             else
                 FileInputButton.Enabled = false;
-            DataTextBox.Enabled = true;
+            DataTextBox.Enabled = false;
             BeaufortRadioButton.Enabled = true;
             ROT13RadioButton.Enabled = true;
+        }
+
+        private void SaveDataFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DataTextBox.Text != "") //Проверка наличия исходных данных
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
+                    return; //Случай с отменой выбора файла
+                string saveFilename = saveFileDialog1.FileName;
+                System.IO.File.WriteAllText(saveFilename, DataTextBox.Text); //Сохранение в файл
+                MessageBox.Show("Файл сохранен", "Файл");
+            }
+            else
+                MessageBox.Show("Исходные данные отсутствуют", "Файл");
+        }
+
+        private void SaveResultFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DataTextBox.Text != "" && ResultTextBox.Text != "") //Проверка наличия результата 
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
+                    return; //Случай с отменой выбора файла
+                string saveFilename = saveFileDialog1.FileName;
+                //Сохранение в файл
+                System.IO.File.WriteAllText(saveFilename, " Исходный текст: \n" +
+                    DataTextBox.Text + "\n Измененный текст: \n" + ResultTextBox.Text);
+                MessageBox.Show("Файл сохранен", "Файл");
+            }
+            else
+                MessageBox.Show("Результат программы отсутствует", "Файл");
+        }
+
+        private void FileInputButton_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
+                return; //Случай с отменой выбора файла
+            else
+            {
+                string filename = openFileDialog1.FileName; //Выбор файла
+                text = System.IO.File.ReadAllText(filename); //Считывание из файла
+                DataTextBox.Text = text;
+            }
         }
     }
 }

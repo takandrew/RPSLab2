@@ -43,12 +43,14 @@ namespace RPSLab2
             this.DecodeButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.FileInputButton = new System.Windows.Forms.Button();
+            this.FileInputRadioButton = new System.Windows.Forms.RadioButton();
+            this.ManualInputRadioButton = new System.Windows.Forms.RadioButton();
             this.KeyLabel = new System.Windows.Forms.Label();
             this.KeyTextBox = new System.Windows.Forms.TextBox();
-            this.ManualInputRadioButton = new System.Windows.Forms.RadioButton();
-            this.FileInputRadioButton = new System.Windows.Forms.RadioButton();
-            this.FileInputButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -87,12 +89,14 @@ namespace RPSLab2
             this.SaveDataFileToolStripMenuItem.Name = "SaveDataFileToolStripMenuItem";
             this.SaveDataFileToolStripMenuItem.Size = new System.Drawing.Size(346, 26);
             this.SaveDataFileToolStripMenuItem.Text = "Сохранить исходные данные в файл";
+            this.SaveDataFileToolStripMenuItem.Click += new System.EventHandler(this.SaveDataFileToolStripMenuItem_Click);
             // 
             // SaveResultFileToolStripMenuItem
             // 
             this.SaveResultFileToolStripMenuItem.Name = "SaveResultFileToolStripMenuItem";
             this.SaveResultFileToolStripMenuItem.Size = new System.Drawing.Size(346, 26);
             this.SaveResultFileToolStripMenuItem.Text = "Сохранить результат в файл";
+            this.SaveResultFileToolStripMenuItem.Click += new System.EventHandler(this.SaveResultFileToolStripMenuItem_Click);
             // 
             // InfoToolStripMenuItem
             // 
@@ -182,6 +186,38 @@ namespace RPSLab2
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             // 
+            // FileInputButton
+            // 
+            this.FileInputButton.Location = new System.Drawing.Point(584, 9);
+            this.FileInputButton.Name = "FileInputButton";
+            this.FileInputButton.Size = new System.Drawing.Size(161, 44);
+            this.FileInputButton.TabIndex = 13;
+            this.FileInputButton.Text = "Выбрать файл";
+            this.FileInputButton.UseVisualStyleBackColor = true;
+            this.FileInputButton.Click += new System.EventHandler(this.FileInputButton_Click);
+            // 
+            // FileInputRadioButton
+            // 
+            this.FileInputRadioButton.AutoSize = true;
+            this.FileInputRadioButton.Location = new System.Drawing.Point(439, 21);
+            this.FileInputRadioButton.Name = "FileInputRadioButton";
+            this.FileInputRadioButton.Size = new System.Drawing.Size(127, 21);
+            this.FileInputRadioButton.TabIndex = 12;
+            this.FileInputRadioButton.Text = "Ввод из файла";
+            this.FileInputRadioButton.UseVisualStyleBackColor = true;
+            this.FileInputRadioButton.CheckedChanged += new System.EventHandler(this.FileInputRadioButton_CheckedChanged);
+            // 
+            // ManualInputRadioButton
+            // 
+            this.ManualInputRadioButton.AutoSize = true;
+            this.ManualInputRadioButton.Location = new System.Drawing.Point(160, 21);
+            this.ManualInputRadioButton.Name = "ManualInputRadioButton";
+            this.ManualInputRadioButton.Size = new System.Drawing.Size(111, 21);
+            this.ManualInputRadioButton.TabIndex = 11;
+            this.ManualInputRadioButton.Text = "Ручной ввод";
+            this.ManualInputRadioButton.UseVisualStyleBackColor = true;
+            this.ManualInputRadioButton.CheckedChanged += new System.EventHandler(this.ManualInputRadioButton_CheckedChanged);
+            // 
             // KeyLabel
             // 
             this.KeyLabel.AutoSize = true;
@@ -197,37 +233,6 @@ namespace RPSLab2
             this.KeyTextBox.Name = "KeyTextBox";
             this.KeyTextBox.Size = new System.Drawing.Size(676, 22);
             this.KeyTextBox.TabIndex = 10;
-            // 
-            // ManualInputRadioButton
-            // 
-            this.ManualInputRadioButton.AutoSize = true;
-            this.ManualInputRadioButton.Location = new System.Drawing.Point(160, 21);
-            this.ManualInputRadioButton.Name = "ManualInputRadioButton";
-            this.ManualInputRadioButton.Size = new System.Drawing.Size(111, 21);
-            this.ManualInputRadioButton.TabIndex = 11;
-            this.ManualInputRadioButton.Text = "Ручной ввод";
-            this.ManualInputRadioButton.UseVisualStyleBackColor = true;
-            this.ManualInputRadioButton.CheckedChanged += new System.EventHandler(this.ManualInputRadioButton_CheckedChanged);
-            // 
-            // FileInputRadioButton
-            // 
-            this.FileInputRadioButton.AutoSize = true;
-            this.FileInputRadioButton.Location = new System.Drawing.Point(439, 21);
-            this.FileInputRadioButton.Name = "FileInputRadioButton";
-            this.FileInputRadioButton.Size = new System.Drawing.Size(127, 21);
-            this.FileInputRadioButton.TabIndex = 12;
-            this.FileInputRadioButton.Text = "Ввод из файла";
-            this.FileInputRadioButton.UseVisualStyleBackColor = true;
-            this.FileInputRadioButton.CheckedChanged += new System.EventHandler(this.FileInputRadioButton_CheckedChanged);
-            // 
-            // FileInputButton
-            // 
-            this.FileInputButton.Location = new System.Drawing.Point(584, 9);
-            this.FileInputButton.Name = "FileInputButton";
-            this.FileInputButton.Size = new System.Drawing.Size(161, 44);
-            this.FileInputButton.TabIndex = 13;
-            this.FileInputButton.Text = "Выбрать файл";
-            this.FileInputButton.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -246,6 +251,16 @@ namespace RPSLab2
             this.groupBox2.Size = new System.Drawing.Size(756, 398);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.CreatePrompt = true;
+            this.saveFileDialog1.DefaultExt = "txt";
+            this.saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // MainForm
             // 
@@ -292,6 +307,8 @@ namespace RPSLab2
         private System.Windows.Forms.RadioButton FileInputRadioButton;
         private System.Windows.Forms.RadioButton ManualInputRadioButton;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
