@@ -8,12 +8,12 @@ namespace RPSLab2
 {
     class Beaufort: ICipher
     {
-        const string engAlphabet = @"abcdefghijklmnopqrstuvwxyz";
-        const string rusAlphabet = @"абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+        const string engAlphabet = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const string rusAlphabet = @"АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
         private bool IsLatin(char letter)
         {
             short minusOne = -1;
-            if (engAlphabet.IndexOf(char.ToLower(letter)) == minusOne)
+            if (engAlphabet.IndexOf(char.ToUpper(letter)) == minusOne)
                 return false;
             return true;
         }
@@ -23,26 +23,31 @@ namespace RPSLab2
             {
                 key += key[((i + j) % key.Length)]; 
             }
+            var keyUP = key.ToCharArray();
+            for (int i = 0; i < keyUP.Length; i++)
+                keyUP[i] = char.ToUpper(keyUP[i]);
             var letters = text.ToCharArray();
             for (var i = 0; i < letters.Length; i++)
                 if (char.IsLetter(letters[i]))
                 {
                     var isLowerCase = char.IsLower(letters[i]);
-                    if (IsLatin(letters[i]))
-                        letters[i] = engAlphabet[(((engAlphabet.Length + engAlphabet.IndexOf(key[i]) -
-                    engAlphabet.IndexOf(text[i])) % engAlphabet.Length))];
-                    else
-                        letters[i] = rusAlphabet[(((rusAlphabet.Length + rusAlphabet.IndexOf(key[i]) -
-                    rusAlphabet.IndexOf(text[i])) % rusAlphabet.Length))];
-                    if (!isLowerCase)
+                    if (isLowerCase)
                         letters[i] = char.ToUpper(letters[i]);
+                    if (IsLatin(letters[i]))
+                        letters[i] = engAlphabet[(engAlphabet.Length + engAlphabet.IndexOf(keyUP[i]) -
+                    engAlphabet.IndexOf(letters[i])) % engAlphabet.Length];
+                    else
+                        letters[i] = rusAlphabet[(rusAlphabet.Length + rusAlphabet.IndexOf(keyUP[i]) -
+                    rusAlphabet.IndexOf(letters[i])) % rusAlphabet.Length];
+                    if (isLowerCase)
+                        letters[i] = char.ToLower(letters[i]);
                 }
 
             return string.Join("", letters);
         }
         public string Decode(string text, string key)
         {
-            
+            text = Encode(text, key);
             return text;
         }
     }

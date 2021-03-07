@@ -69,10 +69,15 @@ namespace RPSLab2
             text = DataTextBox.Text;
             if (BeaufortRadioButton.Checked)
             {
-                Beaufort beaufort = new Beaufort();
-                key = KeyTextBox.Text;
-                text = beaufort.Encode(text, key);
-                ResultTextBox.Text = text;
+                if (KeyTextBox.Text != "")
+                {
+                    Beaufort beaufort = new Beaufort();
+                    key = KeyTextBox.Text;
+                    text = beaufort.Encode(text, key);
+                    ResultTextBox.Text = text;
+                }
+                else
+                    MessageBox.Show("Ключ отсутствует", "Ошибка");
             }
             else if (ROT13RadioButton.Checked)
             {
@@ -88,7 +93,15 @@ namespace RPSLab2
             text = DataTextBox.Text;
             if (BeaufortRadioButton.Checked)
             {
-
+                if (KeyTextBox.Text != "")
+                {
+                    Beaufort beaufort = new Beaufort();
+                    key = KeyTextBox.Text;
+                    text = beaufort.Decode(text, key);
+                    ResultTextBox.Text = text;
+                }
+                else
+                    MessageBox.Show("Ключ отсутствует", "Ошибка");
             }
             else if (ROT13RadioButton.Checked)
             {
