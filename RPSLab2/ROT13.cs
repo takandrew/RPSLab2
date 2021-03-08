@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPSLab2
 {
-    class ROT13: ICipher
+    public class ROT13: ICipher
     {
         const string engAlphabet = @"abcdefghijklmnopqrstuvwxyz";
         const string rusAlphabet = @"абвгдеёжзийклмнопрстуфхцчшщъыьэюя";

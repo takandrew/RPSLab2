@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPSLab2
 {
-    class Beaufort: ICipher
+    public class Beaufort: ICipher
     {
         const string engAlphabet = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         const string rusAlphabet = @"АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
