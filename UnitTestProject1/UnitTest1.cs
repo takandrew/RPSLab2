@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using RPSLab2;
 
 namespace UnitTestProject1
@@ -33,7 +32,7 @@ namespace UnitTestProject1
             Beaufort beaufort = new Beaufort();
             string testString = "Hello! Тест!";
             string key = "ключ";
-            string resultString = "Svool! Еёъл!";
+            string resultString = "Eiunx! Еёъл!";
             testString = beaufort.Encode(testString, key);
             Assert.AreEqual(testString, resultString);
         }

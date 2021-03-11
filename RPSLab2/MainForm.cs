@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RPSLab2
@@ -17,6 +10,7 @@ namespace RPSLab2
         {
             InitializeComponent();
             MaximizeBox = false; //Отключение возможности растягивания окна
+            //Настройки видимости интерфейса
             EncodeButton.Enabled = false;
             DecodeButton.Enabled = false;
             KeyLabel.Visible = false;
@@ -44,6 +38,7 @@ namespace RPSLab2
 
         private void BeaufortRadioButton_CheckedChanged(object sender, EventArgs e)
         {
+            //Настройки видимости интерфейса при выборе шифра Бофора
             EncodeButton.Enabled = true;
             DecodeButton.Enabled = true;
             KeyLabel.Visible = true;
@@ -54,6 +49,7 @@ namespace RPSLab2
 
         private void ROT13RadioButton_CheckedChanged(object sender, EventArgs e)
         {
+            //Настройки видимости интерфейса при выборе шифра ROT13
             EncodeButton.Enabled = true;
             DecodeButton.Enabled = true;
             KeyLabel.Visible = false;
@@ -64,10 +60,10 @@ namespace RPSLab2
 
         string text = null;
         string key = null;
-        private void EncodeButton_Click(object sender, EventArgs e)
+        private void EncodeButton_Click(object sender, EventArgs e) //Нажатие кнопки "Шифровать"
         {
             text = DataTextBox.Text;
-            if (BeaufortRadioButton.Checked)
+            if (BeaufortRadioButton.Checked) //Если выбран шифр Бофора
             {
                 if (KeyTextBox.Text != "")
                 {
@@ -79,7 +75,7 @@ namespace RPSLab2
                 else
                     MessageBox.Show("Ключ отсутствует", "Ошибка");
             }
-            else if (ROT13RadioButton.Checked)
+            else if (ROT13RadioButton.Checked) //Если выбран шифр ROT13
             {
                 ROT13 rot13 = new ROT13();
                 key = null;
@@ -88,10 +84,10 @@ namespace RPSLab2
             }
         }
 
-        private void DecodeButton_Click(object sender, EventArgs e)
+        private void DecodeButton_Click(object sender, EventArgs e) //Нажатие кнопки "Дешифровать"
         {
             text = DataTextBox.Text;
-            if (BeaufortRadioButton.Checked)
+            if (BeaufortRadioButton.Checked) //Если выбран шифр Бофора
             {
                 if (KeyTextBox.Text != "")
                 {
@@ -103,7 +99,7 @@ namespace RPSLab2
                 else
                     MessageBox.Show("Ключ отсутствует", "Ошибка");
             }
-            else if (ROT13RadioButton.Checked)
+            else if (ROT13RadioButton.Checked) //Если выбран шифр ROT13
             {
                 ROT13 rot13 = new ROT13();
                 key = null;
@@ -114,6 +110,7 @@ namespace RPSLab2
 
         private void ManualInputRadioButton_CheckedChanged(object sender, EventArgs e)
         {
+            //Настройки видимости интерфейса при выборе ручного ввода
             FileInputButton.Visible = false;
             DataTextBox.Enabled = true;
             BeaufortRadioButton.Enabled = true;
@@ -122,6 +119,7 @@ namespace RPSLab2
 
         private void FileInputRadioButton_CheckedChanged(object sender, EventArgs e)
         {
+            //Настройки видимости интерфейса при выборе ввода из файла
             FileInputButton.Visible = true;
             if (BeaufortRadioButton.Checked || ROT13RadioButton.Checked)
                 FileInputButton.Enabled = true;
@@ -132,8 +130,9 @@ namespace RPSLab2
             ROT13RadioButton.Enabled = true;
         }
 
-        private void SaveDataFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaveDataFileToolStripMenuItem_Click(object sender, EventArgs e) 
         {
+            //Сохранение исходных данных
             if (DataTextBox.Text != "") //Проверка наличия исходных данных
             {
                 if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
@@ -148,6 +147,7 @@ namespace RPSLab2
 
         private void SaveResultFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //Сохранение результата программы
             if (DataTextBox.Text != "" && ResultTextBox.Text != "") //Проверка наличия результата 
             {
                 if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
@@ -164,6 +164,7 @@ namespace RPSLab2
 
         private void FileInputButton_Click(object sender, EventArgs e)
         {
+            //Ввод из файла
             if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
                 return; //Случай с отменой выбора файла
             else
