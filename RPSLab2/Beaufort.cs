@@ -31,12 +31,24 @@ namespace RPSLab2
                     var isLowerCase = char.IsLower(letters[i]);
                     if (isLowerCase)
                         letters[i] = char.ToUpper(letters[i]);
-                    if (IsLatin(letters[i]))
-                        letters[i] = engAlphabet[(engAlphabet.Length + engAlphabet.IndexOf(keyUP[i]) -
-                    engAlphabet.IndexOf(letters[i])) % engAlphabet.Length];
+                    if (IsLatin(keyUP[i]))
+                    {
+                        if (IsLatin(letters[i]))
+                            letters[i] = engAlphabet[(engAlphabet.Length + engAlphabet.IndexOf(keyUP[i]) -
+                        engAlphabet.IndexOf(letters[i])) % engAlphabet.Length];
+                        else
+                            letters[i] = rusAlphabet[(rusAlphabet.Length + engAlphabet.IndexOf(keyUP[i]) -
+                        rusAlphabet.IndexOf(letters[i])) % rusAlphabet.Length];
+                    }
                     else
-                        letters[i] = rusAlphabet[(rusAlphabet.Length + rusAlphabet.IndexOf(keyUP[i]) -
-                    rusAlphabet.IndexOf(letters[i])) % rusAlphabet.Length];
+                    {
+                        if (IsLatin(letters[i]))
+                            letters[i] = engAlphabet[(engAlphabet.Length + rusAlphabet.IndexOf(keyUP[i]) -
+                        engAlphabet.IndexOf(letters[i])) % engAlphabet.Length];
+                        else
+                            letters[i] = rusAlphabet[(rusAlphabet.Length + rusAlphabet.IndexOf(keyUP[i]) -
+                        rusAlphabet.IndexOf(letters[i])) % rusAlphabet.Length];
+                    }
                     if (isLowerCase)
                         letters[i] = char.ToLower(letters[i]);
                 }
