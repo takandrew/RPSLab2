@@ -13,8 +13,10 @@ namespace UnitTestProject1
             string testString = "Hello World";
             string key = "key";
             string resultString = "Danzq Oqhzb";
-            testString = beaufort.Encode(testString, key);
-            Assert.AreEqual(testString, resultString);
+            string testedString = beaufort.Encode(testString, key);
+            Assert.AreEqual(testedString, resultString);
+            string decodeTest = beaufort.Decode(resultString, key);
+            Assert.AreEqual(testString, decodeTest);
         }
         [TestMethod]
         public void TestBeaufortRus()
@@ -23,8 +25,10 @@ namespace UnitTestProject1
             string testString = "Тестовая строка";
             string key = "ключ";
             string resultString = "Шжмеьйюш ължьбю";
-            testString = beaufort.Encode(testString, key);
-            Assert.AreEqual(testString, resultString);
+            string testedString = beaufort.Encode(testString, key);
+            Assert.AreEqual(testedString, resultString);
+            string decodeTest = beaufort.Decode(resultString, key);
+            Assert.AreEqual(testString, decodeTest);
         }
         [TestMethod]
         public void TestBeaufortAll()
@@ -33,8 +37,10 @@ namespace UnitTestProject1
             string testString = "Hello! Тест!";
             string key = "ключ";
             string resultString = "Eiunx! Еёъл!";
-            testString = beaufort.Encode(testString, key);
-            Assert.AreEqual(testString, resultString);
+            string testedString = beaufort.Encode(testString, key);
+            Assert.AreEqual(testedString, resultString);
+            string decodeTest = beaufort.Decode(resultString, key);
+            Assert.AreEqual(testString, decodeTest);
         }
         [TestMethod]
         public void TestROT13Eng()
@@ -43,8 +49,10 @@ namespace UnitTestProject1
             string testString = "Hello world!";
             string key = null;
             string resultString = "Uryyb jbeyq!";
-            testString = rot13.Encode(testString, key);
-            Assert.AreEqual(testString, resultString);
+            string testedString = rot13.Encode(testString, key);
+            Assert.AreEqual(testedString, resultString);
+            string decodeTest = rot13.Decode(resultString, key);
+            Assert.AreEqual(testString, decodeTest);
         }
         [TestMethod]
         public void TestROT13Rus()
@@ -53,8 +61,10 @@ namespace UnitTestProject1
             string testString = "Тестовая строка";
             string key = null;
             string resultString = "Ясюяыомл юяэычм";
-            testString = rot13.Encode(testString, key);
-            Assert.AreEqual(testString, resultString);
+            string testedString = rot13.Encode(testString, key);
+            Assert.AreEqual(testedString, resultString);
+            string decodeTest = rot13.Decode(resultString, key);
+            Assert.AreEqual(testString, decodeTest);
         }
         [TestMethod]
         public void TestROT13All()
@@ -63,8 +73,10 @@ namespace UnitTestProject1
             string testString = "Hello! Тест!";
             string key = null;
             string resultString = "Uryyb! Ясюя!";
-            testString = rot13.Encode(testString, key);
-            Assert.AreEqual(testString, resultString);
+            string testedString = rot13.Encode(testString, key);
+            Assert.AreEqual(testedString, resultString);
+            string decodeTest = rot13.Decode(resultString, key);
+            Assert.AreEqual(testString, decodeTest);
         }
     }
 }

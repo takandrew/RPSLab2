@@ -154,8 +154,7 @@ namespace RPSLab2
                     return; //Случай с отменой выбора файла
                 string saveFilename = saveFileDialog1.FileName;
                 //Сохранение в файл
-                System.IO.File.WriteAllText(saveFilename, " Исходный текст: \n" +
-                    DataTextBox.Text + "\n Измененный текст: \n" + ResultTextBox.Text);
+                System.IO.File.WriteAllText(saveFilename, ResultTextBox.Text);
                 MessageBox.Show("Файл сохранен", "Файл");
             }
             else
